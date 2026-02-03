@@ -1,0 +1,48 @@
+.bus-list {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+}
+
+.bus-list h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.bus-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  color: #111827; /* 🔥 force dark text */
+}
+
+.bus-card h4 {
+  margin: 0 0 6px;
+  color: #2563eb; /* blue for bus number */
+  font-size: 15px;
+}
+
+.bus-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #374151; /* dark gray for route text */
+}
+
+.bus-time {
+  text-align: right;
+}
+
+.bus-time p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.bus-time p:first-child {
+  font-weight: 600;
+  color: #16a34a; /* green ETA */
+}

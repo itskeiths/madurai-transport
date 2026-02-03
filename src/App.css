@@ -1,0 +1,19 @@
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* App background */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f4f8;
+}
+
+/* Main content container */
+.app-container {
+  padding: 24px;
+  background-color: #f4f6f9;
+  min-height: calc(100vh - 60px);
+}
