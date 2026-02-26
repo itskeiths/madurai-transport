@@ -11,6 +11,7 @@ function App() {
 
   const [searchFrom, setSearchFrom] = useState("");
   const [searchTo, setSearchTo] = useState("");
+  const [limit, setLimit] = useState<number | undefined>(3);
 
   const [currentTab, setCurrentTab] = useState<"home" | "buses" | "info">(
     "home",
@@ -41,11 +42,23 @@ function App() {
           />
         )}
 
-        <BusList
-          searchFrom={searchFrom}
-          searchTo={searchTo}
-          limit={currentTab === "home" ? 3 : undefined}
-        />
+        {currentTab === "home" && (
+          <BusList
+            searchFrom={searchFrom}
+            searchTo={searchTo}
+            limit={limit}
+            setLimit={setLimit}
+          />
+        )}
+
+        {currentTab === "buses" && (
+          <BusList
+            searchFrom=""
+            searchTo=""
+            limit={undefined}
+            setLimit={setLimit}
+          />
+        )}
       </div>
 
       <Footer

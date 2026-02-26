@@ -8,6 +8,7 @@ type Bus = {
   to: string;
   departureTime: string;
   eta: string;
+  price: number; // ✅ Added price
 };
 
 const buses: Bus[] = [
@@ -18,6 +19,7 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "12:45 PM",
     eta: "10 mins",
+    price: 15,
   },
   {
     id: "BUS_46A",
@@ -26,6 +28,7 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "12:50 PM",
     eta: "15 mins",
+    price: 18,
   },
   {
     id: "BUS_71C",
@@ -34,8 +37,8 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "1:05 PM",
     eta: "22 mins",
+    price: 22,
   },
-
   {
     id: "BUS_12A",
     busNo: "12A",
@@ -43,6 +46,7 @@ const buses: Bus[] = [
     to: "Arapalayam",
     departureTime: "1:10 PM",
     eta: "18 mins",
+    price: 20,
   },
   {
     id: "BUS_18D",
@@ -51,6 +55,7 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "1:15 PM",
     eta: "12 mins",
+    price: 16,
   },
   {
     id: "BUS_33C",
@@ -59,6 +64,7 @@ const buses: Bus[] = [
     to: "Mattuthavani",
     departureTime: "1:20 PM",
     eta: "20 mins",
+    price: 21,
   },
   {
     id: "BUS_51A",
@@ -67,6 +73,7 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "1:25 PM",
     eta: "25 mins",
+    price: 25,
   },
   {
     id: "BUS_29B",
@@ -75,6 +82,7 @@ const buses: Bus[] = [
     to: "Arapalayam",
     departureTime: "1:30 PM",
     eta: "14 mins",
+    price: 14,
   },
   {
     id: "BUS_40C",
@@ -83,6 +91,7 @@ const buses: Bus[] = [
     to: "Mattuthavani",
     departureTime: "1:35 PM",
     eta: "16 mins",
+    price: 17,
   },
   {
     id: "BUS_65B",
@@ -91,8 +100,8 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "1:40 PM",
     eta: "30 mins",
+    price: 28,
   },
-
   {
     id: "BUS_22A",
     busNo: "22A",
@@ -100,6 +109,7 @@ const buses: Bus[] = [
     to: "Arapalayam",
     departureTime: "1:45 PM",
     eta: "17 mins",
+    price: 19,
   },
   {
     id: "BUS_28D",
@@ -108,6 +118,7 @@ const buses: Bus[] = [
     to: "Villapuram",
     departureTime: "1:50 PM",
     eta: "19 mins",
+    price: 20,
   },
   {
     id: "BUS_35A",
@@ -116,6 +127,7 @@ const buses: Bus[] = [
     to: "Arapalayam",
     departureTime: "1:55 PM",
     eta: "24 mins",
+    price: 23,
   },
   {
     id: "BUS_48B",
@@ -124,6 +136,7 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "2:00 PM",
     eta: "21 mins",
+    price: 22,
   },
   {
     id: "BUS_52C",
@@ -132,8 +145,8 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "2:05 PM",
     eta: "13 mins",
+    price: 15,
   },
-
   {
     id: "BUS_14B",
     busNo: "14B",
@@ -141,6 +154,7 @@ const buses: Bus[] = [
     to: "Arapalayam",
     departureTime: "2:10 PM",
     eta: "26 mins",
+    price: 26,
   },
   {
     id: "BUS_19A",
@@ -149,6 +163,7 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "2:15 PM",
     eta: "11 mins",
+    price: 13,
   },
   {
     id: "BUS_24C",
@@ -157,6 +172,7 @@ const buses: Bus[] = [
     to: "Mattuthavani",
     departureTime: "2:20 PM",
     eta: "28 mins",
+    price: 27,
   },
   {
     id: "BUS_38D",
@@ -165,6 +181,7 @@ const buses: Bus[] = [
     to: "Arapalayam",
     departureTime: "2:25 PM",
     eta: "15 mins",
+    price: 16,
   },
   {
     id: "BUS_44A",
@@ -173,8 +190,8 @@ const buses: Bus[] = [
     to: "Villapuram",
     departureTime: "2:30 PM",
     eta: "18 mins",
+    price: 18,
   },
-
   {
     id: "BUS_57C",
     busNo: "57C",
@@ -182,6 +199,7 @@ const buses: Bus[] = [
     to: "Simmakkal",
     departureTime: "2:35 PM",
     eta: "20 mins",
+    price: 19,
   },
   {
     id: "BUS_62B",
@@ -190,6 +208,7 @@ const buses: Bus[] = [
     to: "Villapuram",
     departureTime: "2:40 PM",
     eta: "22 mins",
+    price: 21,
   },
   {
     id: "BUS_68A",
@@ -198,6 +217,7 @@ const buses: Bus[] = [
     to: "Arapalayam",
     departureTime: "2:45 PM",
     eta: "29 mins",
+    price: 28,
   },
   {
     id: "BUS_73D",
@@ -206,6 +226,7 @@ const buses: Bus[] = [
     to: "Simmakkal",
     departureTime: "2:50 PM",
     eta: "16 mins",
+    price: 17,
   },
   {
     id: "BUS_79B",
@@ -214,6 +235,7 @@ const buses: Bus[] = [
     to: "Periyar Bus Stand",
     departureTime: "2:55 PM",
     eta: "23 mins",
+    price: 24,
   },
 ];
 

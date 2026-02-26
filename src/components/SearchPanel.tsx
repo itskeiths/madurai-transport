@@ -6,6 +6,8 @@ import "../styles/SearchPanel.css";
 type SearchPanelProps = {
   setFrom: React.Dispatch<React.SetStateAction<string>>;
   setTo: React.Dispatch<React.SetStateAction<string>>;
+  currentTab: "home" | "buses" | "info";
+  setCurrentTab: (tab: "home" | "buses" | "info") => void;
   onSearch: () => void; // ✅ added
 };
 

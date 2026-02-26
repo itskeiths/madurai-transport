@@ -10,17 +10,28 @@ type Bus = {
   to: string;
   departureTime: string;
   eta: string;
+  price: number;
 };
 
 type BusListProps = {
   searchFrom: string;
   searchTo: string;
+  currentTab: "home" | "buses" | "info";
+  setCurrentTab: (tab: "home" | "buses" | "info") => void;
   limit?: number;
+  setLimit?: React.Dispatch<React.SetStateAction<number | undefined>>;
 };
 
-function BusList({ searchFrom, searchTo, limit }: BusListProps) {
+function BusList({ searchFrom, searchTo, limit }: Readonly<BusListProps>) {
   const [buses, setBuses] = useState<Bus[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedBus, setSelectedBus] = useState<Bus | null>(null);
+  const [members, setMembers] = useState(1);
+
+  const showInfo = (bus: Bus) => {
+    setSelectedBus(bus);
+    setMembers(1);
+  };
 
   useEffect(() => {
     const fetchBuses = async () => {
@@ -41,6 +52,17 @@ function BusList({ searchFrom, searchTo, limit }: BusListProps) {
     fetchBuses();
   }, []);
 
+  const handleBooking = () => {
+    if (!selectedBus) return;
+
+    const total = selectedBus.price * members;
+
+    alert(
+      `Booking Confirmed!\n\nBus: ${selectedBus.busNo}\nFrom: ${selectedBus.from}\nTo: ${selectedBus.to}\nMembers: ${members}\nTotal: ₹${total}`,
+    );
+
+    setSelectedBus(null);
+  };
   const filteredBuses = buses.filter((bus) => {
     const fromMatch = searchFrom
       ? bus.from.toLowerCase() === searchFrom.toLowerCase()
@@ -54,7 +76,6 @@ function BusList({ searchFrom, searchTo, limit }: BusListProps) {
   });
 
   const visibleBuses = limit ? filteredBuses.slice(0, limit) : filteredBuses;
-
   if (loading) {
     return <p>Loading buses...</p>;
   }
@@ -67,7 +88,7 @@ function BusList({ searchFrom, searchTo, limit }: BusListProps) {
         <p>No buses found for the selected route.</p>
       ) : (
         visibleBuses.map((bus) => (
-          <div className="bus-card" key={bus.id}>
+          <div className="bus-card" key={bus.id} onClick={() => showInfo(bus)}>
             <div>
               <h4>Bus No: {bus.busNo}</h4>
               <p>
@@ -79,6 +100,83 @@ function BusList({ searchFrom, searchTo, limit }: BusListProps) {
               <p>ETA: {bus.eta}</p>
               <p>Dep: {bus.departureTime}</p>
             </div>
+            {selectedBus && (
+              <div
+                className="modal-overlay"
+                onClick={() => setSelectedBus(null)} // click outside closes
+              >
+                <div
+                  className="modal-card"
+                  onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+                >
+                  <button
+                    className="close-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBus(null);
+                    }}
+                  >
+                    ×
+                  </button>
+
+                  <h3>Bus Details</h3>
+
+                  <p>
+                    <strong>Bus No:</strong> {selectedBus.busNo}
+                  </p>
+                  <p>
+                    <strong>From:</strong> {selectedBus.from}
+                  </p>
+                  <p>
+                    <strong>To:</strong> {selectedBus.to}
+                  </p>
+                  <p>
+                    <strong>Departure:</strong> {selectedBus.departureTime}
+                  </p>
+                  <p>
+                    <strong>ETA:</strong> {selectedBus.eta}
+                  </p>
+                  <p>
+                    <strong>Price:</strong> ₹{selectedBus.price}
+                  </p>
+
+                  <div className="member-control">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMembers((prev) => Math.max(1, prev - 1));
+                      }}
+                    >
+                      −
+                    </button>
+
+                    <span>{members}</span>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMembers((prev) => prev + 1);
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <h4>Total: ₹{selectedBus.price * members}</h4>
+
+                  <button
+                    className="book-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      alert("🎉 Ticket Booked Successfully!");
+                      setSelectedBus(null);
+                    }}
+                  >
+                    Book Ticket
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         ))
       )}

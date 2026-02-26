@@ -31,18 +31,6 @@
   gap: 18px;
 }
 
-.icon {
-  font-size: 18px;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    color 0.2s ease;
-}
-
-.icon:hover {
-  transform: scale(1.2);
-  color: #ffd700;
-}
 .header-icon {
   cursor: pointer;
   margin-left: 16px;
