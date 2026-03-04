@@ -52,17 +52,6 @@ function BusList({ searchFrom, searchTo, limit }: Readonly<BusListProps>) {
     fetchBuses();
   }, []);
 
-  const handleBooking = () => {
-    if (!selectedBus) return;
-
-    const total = selectedBus.price * members;
-
-    alert(
-      `Booking Confirmed!\n\nBus: ${selectedBus.busNo}\nFrom: ${selectedBus.from}\nTo: ${selectedBus.to}\nMembers: ${members}\nTotal: ₹${total}`,
-    );
-
-    setSelectedBus(null);
-  };
   const filteredBuses = buses.filter((bus) => {
     const fromMatch = searchFrom
       ? bus.from.toLowerCase() === searchFrom.toLowerCase()

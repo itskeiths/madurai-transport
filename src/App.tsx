@@ -46,8 +46,8 @@ function App() {
 
         {currentTab === "home" && (
           <BusList
-            searchFrom={from}
-            searchTo={to}
+            searchFrom={searchFrom}
+            searchTo={searchTo}
             limit={limit}
             setLimit={setLimit}
             currentTab={currentTab}
