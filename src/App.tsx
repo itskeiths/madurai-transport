@@ -36,6 +36,8 @@ function App() {
       <div className="app-container">
         {currentTab === "home" && (
           <SearchPanel
+            currentTab={currentTab}
+            setCurrentTab={setCurrentTab}
             setFrom={setFrom}
             setTo={setTo}
             onSearch={handleSearch}
@@ -44,10 +46,12 @@ function App() {
 
         {currentTab === "home" && (
           <BusList
-            searchFrom={searchFrom}
-            searchTo={searchTo}
+            searchFrom={from}
+            searchTo={to}
             limit={limit}
             setLimit={setLimit}
+            currentTab={currentTab}
+            setCurrentTab={setCurrentTab}
           />
         )}
 
@@ -57,6 +61,8 @@ function App() {
             searchTo=""
             limit={undefined}
             setLimit={setLimit}
+            currentTab={currentTab}
+            setCurrentTab={setCurrentTab}
           />
         )}
       </div>
