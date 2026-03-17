@@ -1,7 +1,19 @@
 import "../styles/Header.css";
-import { Bell, Search, Settings } from "lucide-react";
+import { History, CircleUser, LogOut } from "lucide-react";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
 
-function Header() {
+type HeaderProps = {
+  setCurrentTab: (tab: "home" | "buses" | "info" | "history") => void;
+};
+
+function Header({ setCurrentTab }: HeaderProps) {
+  const user = auth.currentUser;
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
+
   return (
     <header className="header">
       <div className="header-left">
@@ -10,18 +22,23 @@ function Header() {
       </div>
 
       <div className="header-right">
-        <Search
+        <div className="profile-container">
+          <CircleUser className="header-icon" />
+
+          {user && (
+            <div className="profile-card">
+              <p className="profile-name">{user.displayName}</p>
+              <p className="profile-email">{user.email}</p>
+            </div>
+          )}
+        </div>
+
+        <History
           className="header-icon"
-          onClick={() => alert("Search coming soon")}
+          onClick={() => setCurrentTab("history")}
         />
-        <Bell
-          className="header-icon"
-          onClick={() => alert("No notifications")}
-        />
-        <Settings
-          className="header-icon"
-          onClick={() => alert("Settings coming soon")}
-        />
+
+        <LogOut className="header-icon" onClick={handleLogout} />
       </div>
     </header>
   );

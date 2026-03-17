@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import {
+  addDoc,
+  serverTimestamp,
+  collection,
+  getDocs,
+} from "firebase/firestore";
+import { db, auth } from "../firebase";
 import "../styles/BusList.css";
-
 type Bus = {
   id: string;
   busNo: string;
@@ -68,6 +72,36 @@ function BusList({ searchFrom, searchTo, limit }: Readonly<BusListProps>) {
   if (loading) {
     return <p>Loading buses...</p>;
   }
+
+  const handleBooking = async () => {
+    try {
+      const user = auth.currentUser;
+
+      if (!user || !selectedBus) {
+        alert("User not logged in");
+        return;
+      }
+
+      await addDoc(collection(db, "bookings"), {
+        userId: user.uid,
+        userEmail: user.email,
+        busNo: selectedBus.busNo,
+        from: selectedBus.from,
+        to: selectedBus.to,
+        departureTime: selectedBus.departureTime,
+        eta: selectedBus.eta,
+        members: members,
+        pricePerPerson: selectedBus.price,
+        totalPrice: selectedBus.price * members,
+        createdAt: serverTimestamp(),
+      });
+
+      alert("🎉 Ticket Booked Successfully!");
+      setSelectedBus(null);
+    } catch (error) {
+      console.error("Booking failed:", error);
+    }
+  };
 
   return (
     <div className="bus-list">
@@ -158,7 +192,7 @@ function BusList({ searchFrom, searchTo, limit }: Readonly<BusListProps>) {
                     onClick={(e) => {
                       e.stopPropagation();
                       alert("🎉 Ticket Booked Successfully!");
-                      setSelectedBus(null);
+                      handleBooking();
                     }}
                   >
                     Book Ticket

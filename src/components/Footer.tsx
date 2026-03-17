@@ -2,7 +2,7 @@ import "../styles/Footer.css";
 import { Home, Bus, Info } from "lucide-react";
 
 type FooterProps = {
-  currentTab: "home" | "buses" | "info";
+  currentTab: "home" | "buses" | "info" | "history";
   setCurrentTab: (tab: "home" | "buses" | "info") => void;
   onHomeClick: () => void;
 };
