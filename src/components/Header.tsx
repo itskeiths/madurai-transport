@@ -3,13 +3,13 @@ import { History, CircleUser, LogOut } from "lucide-react";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 
+type Tab = "home" | "buses" | "info" | "history" | "profile";
+
 type HeaderProps = {
-  setCurrentTab: (tab: "home" | "buses" | "info" | "history") => void;
+  setCurrentTab: (tab: Tab) => void;
 };
 
 function Header({ setCurrentTab }: HeaderProps) {
-  const user = auth.currentUser;
-
   const handleLogout = async () => {
     await signOut(auth);
   };
@@ -18,27 +18,42 @@ function Header({ setCurrentTab }: HeaderProps) {
     <header className="header">
       <div className="header-left">
         <span className="bus-icon">🚌</span>
-        <span className="title">Madurai Transport</span>
+        <span className="title">Madurai One</span>
       </div>
 
       <div className="header-right">
-        <div className="profile-container">
-          <CircleUser className="header-icon" />
+        {/* Profile icon → profile page */}
+        <button
+          id="header-profile-btn"
+          className="header-icon-btn"
+          onClick={() => setCurrentTab("profile")}
+          aria-label="My Profile"
+          title="My Profile"
+        >
+          <CircleUser size={26} />
+        </button>
 
-          {user && (
-            <div className="profile-card">
-              <p className="profile-name">{user.displayName}</p>
-              <p className="profile-email">{user.email}</p>
-            </div>
-          )}
-        </div>
-
-        <History
-          className="header-icon"
+        {/* History icon */}
+        <button
+          id="header-history-btn"
+          className="header-icon-btn"
           onClick={() => setCurrentTab("history")}
-        />
+          aria-label="Booking History"
+          title="Booking History"
+        >
+          <History size={26} />
+        </button>
 
-        <LogOut className="header-icon" onClick={handleLogout} />
+        {/* Logout */}
+        <button
+          id="header-logout-btn"
+          className="header-icon-btn header-icon-btn--danger"
+          onClick={handleLogout}
+          aria-label="Sign Out"
+          title="Sign Out"
+        >
+          <LogOut size={26} />
+        </button>
       </div>
     </header>
   );

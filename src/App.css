@@ -1,19 +1,32 @@
-/* Global reset */
-* {
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ── Global reset ───────────────────────────────────────── */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* App background */
+/* ── Base ───────────────────────────────────────────────── */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f2f4f8;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: #0f0c1a;
+  color: #e8e0f0;
+  min-height: 100vh;
 }
 
-/* Main content container */
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 81, 47, 0.4);
+  border-radius: 6px;
+}
+
+/* ── Main content wrapper ───────────────────────────────── */
 .app-container {
-  padding: 24px;
-  background-color: #f4f6f9;
+  padding: 20px 20px 100px;   /* bottom pad for fixed footer */
+  max-width: 1100px;
+  margin: 0 auto;
   min-height: calc(100vh - 60px);
 }
